@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}"
+>
+	<head>
+		<title>Hello</title>
+	</head>
+	<body layout:fragment="content">
+		<div class="content">
+			<div class="container">
+				<div class="col-md-9">
+					<div
+						id="myCarousel"
+						class="carousel slide"
+						data-ride="carousel"
+					>
+						<ol class="carousel-indicators">
+							<li
+								th:each="link,iter :${@productService.getProductUrls()}"
+								data-target="#myCarousel"
+								th:data-slide-to="${iter.index}"
+								th:class="${iter.index} ? '' : 'active'"
+							></li>
+						</ol>
+
+						<div class="carousel-inner">
+							<div
+								th:each="link,iter :${@productService.getProductUrls()}"
+								th:class="${iter.index} ? 'item' : 'item active'"
+							>
+								<img
+									th:src="${link}"
+									alt=""
+								/>
+							</div>
+						</div>
+						<a
+							class="left carousel-control"
+							href="#myCarousel"
+							data-slide="prev"
+						>
+							<span class="glyphicon glyphicon-chevron-left"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a
+							class="right carousel-control"
+							href="#myCarousel"
+							data-slide="next"
+						>
+							<span class="glyphicon glyphicon-chevron-right"></span>
+							<span class="sr-only">Next</span>
+						</a>
+					</div>
+
+					<div class="panel panel-info panel-prod">
+						<div class="panel-heading panel-heading-prod"><i class="fa fa-spinner fa-spin"></i> Sản phẩm dành cho chó</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="thumbnail">
+										<img
+											src="images/products/3288_ao_t_ao_lien_quan_petcity_1.jpg"
+											class="img-rounded"
+											alt="Áo cho chó đẹp tuyệt vời"
+										/>
+										<div class="caption">
+											<h4>Áo cho chó đẹp tuyệt vời</h4>
+											<p>Giá: 150.000 VNĐ</p>
+											<p>
+												<a
+													href="#"
+													class="btn btn-info"
+													role="button"
+													><i class="fa fa-shopping-cart"></i> Mua ngay</a
+												>
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4">
+									<div class="thumbnail">
+										<img
+											src="images/products/3392_khay_ve_sinh_cho_cho_xanh_petcity_1.jpg"
+											class="img-rounded"
+											alt="Khay giải quyết nổi buồn"
+										/>
+										<div class="caption">
+											<h4>Khay giải quyết nổi buồn</h4>
+											<p>Giá: 150.000 VNĐ</p>
+											<p>
+												<a
+													href="#"
+													class="btn btn-info"
+													role="button"
+													><i class="fa fa-shopping-cart"></i> Mua ngay</a
+												>
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4">
+									<div class="thumbnail">
+										<img
+											src="images/products/2138_RoyalCanin-ClubProAdult20kg.jpg"
+											class="img-rounded"
+											alt="Hạt này ăn mau mập lắm"
+										/>
+										<div class="caption">
+											<h4>Hạt này ăn mau mập lắm</h4>
+											<p>Giá: 150.000 VNĐ</p>
+											<p>
+												<a
+													href="#"
+													class="btn btn-info"
+													role="button"
+													><i class="fa fa-shopping-cart"></i> Mua ngay</a
+												>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<p class="more-prod">
+								<a
+									href="#"
+									target="_blank"
+									>Xem thêm sản phẩm...</a
+								>
+							</p>
+						</div>
+					</div>
+
+					<div class="panel panel-danger panel-prod">
+						<div class="panel-heading panel-heading-prod"><i class="fa fa-spinner fa-spin"></i> Sản phẩm dành cho mèo</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="thumbnail">
+										<img
+											src="images/products/default-img.jpg"
+											class="img-rounded"
+											alt="Mều ngốc ngếch"
+										/>
+										<div class="caption">
+											<h4>Mều ngốc ngếch</h4>
+											<p>Giá: 150.000 VNĐ</p>
+											<p>
+												<a
+													href="#"
+													class="btn btn-info"
+													role="button"
+													><i class="fa fa-shopping-cart"></i> Mua ngay</a
+												>
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4">
+									<div class="thumbnail">
+										<img
+											src="images/products/2577_tui_pet_phi_hanh_gia_pet_city2.jpg"
+											class="img-rounded"
+											alt="Balo phi hành gia"
+										/>
+										<div class="caption">
+											<h4>Balo phi hành gia</h4>
+											<p>Giá: 150.000 VNĐ</p>
+											<p>
+												<a
+													href="#"
+													class="btn btn-info"
+													role="button"
+													><i class="fa fa-shopping-cart"></i> Mua ngay</a
+												>
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4">
+									<div class="thumbnail">
+										<img
+											src="images/products/2953_cay_meo_leo_afp_nature_cozy_petcity_1.jpg"
+											class="img-rounded"
+											alt="Cây cho mèo phá"
+										/>
+										<div class="caption">
+											<h4>Cây cho mèo phá</h4>
+											<p>Giá: 150.000 VNĐ</p>
+											<p>
+												<a
+													href="#"
+													class="btn btn-info"
+													role="button"
+													><i class="fa fa-shopping-cart"></i> Mua ngay</a
+												>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<p class="more-prod">
+								<a
+									href="#"
+									target="_blank"
+									>Xem thêm sản phẩm...</a
+								>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="panel panel-primary panel-post">
+						<div class="panel-heading panel-heading-prod"><i class="fa fa-comments-o"></i> Bài viết chăm sóc thú cưng</div>
+						<div class="panel-body panel-body-post">
+							<h4><a href="#">Cách nuôi mèo mau mập và không hung dữ</a></h4>
+							<p>Làm sao để mèo mau mập, không cắn chủ và bớt láo? Hãy xem ngay bài viết sau đây.</p>
+
+							<h4><a href="#">Làm shao để Husky bớt ngáo, bớt quậy phá</a></h4>
+							<p>Bạn đang nuôi 1 con "báo" Husky và bạn thấy nó phá quá. Hãy bán nó đi, như vậy bạn sẽ thoải mái hơn!</p>
+						</div>
+						<div class="panel-footer">
+							<p class="more-prod">
+								<a
+									href="#"
+									target="_blank"
+									>Xem thêm bài viết...</a
+								>
+							</p>
+						</div>
+					</div>
+
+					<div class="panel panel-success panel-post">
+						<div class="panel-heading panel-heading-prod"><i class="fa fa-paper-plane"></i> Quảng cáo</div>
+						<div class="panel-body panel-body-post">
+							<img
+								src="images/products/3152_chic_cham_dau_tam_cam_petcity.png"
+								class="img-rounded img-adv"
+								alt="Quảng cáo"
+							/>
+							<marquee>Hãy luôn chăm sóc tốt nhất cho cục cưng của bạn bằng cách tắm chúng với sữa tắm dành riêng cho chó - mèo đạt chuẩn an toàn!</marquee>
+						</div>
+					</div>
+
+					<div class="youtube">
+						<iframe
+							width="110%"
+							height="300"
+							src="https://www.youtube.com/embed/YV07A50O8g4?si=rL-wjRdamiOMcZ56"
+							title="YouTube video player"
+							frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							allowfullscreen
+						></iframe>
+					</div>
+
+					<div class="map">
+						<iframe
+							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4206985418705!2d106.78253487570396!3d10.855572157727538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175276e7ea103df%3A0xb6cf10bb7d719327!2zSFVURUNIIC0gxJDhuqFpIGjhu41jIEPDtG5nIG5naOG7hyBUUC5IQ00gKFRodSBEdWMgQ2FtcHVzKQ!5e0!3m2!1svi!2s!4v1710172843840!5m2!1svi!2s"
+							width="110%"
+							height="300"
+							style="border: 0"
+							allowfullscreen=""
+							loading="lazy"
+							referrerpolicy="no-referrer-when-downgrade"
+						></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
