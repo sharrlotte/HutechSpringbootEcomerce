@@ -3,6 +3,7 @@
 <html
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
 	layout:decorate="~{layout}"
 >
 	<head>
@@ -54,23 +55,28 @@
 						<td th:text="${product.category.name}"></td>
 						<td th:text="${product.hide}"></td>
 						<td>
-							<a
-								th:href="@{/products/edit/{id}(id=${product.id})}"
-								class="btn btn-success btn-sm"
-								>Edit</a
-							>
-							<a
-								th:href="@{/products/delete/{id}(id=${product.id})}"
-								class="btn btn-danger btn-sm"
-								onclick="return confirm('Are you sure?')"
-								>Delete</a
-							>
+							<!-- Hiển thị nút sửa và xóa chỉ dành cho người dùng ADMIN -->
+							<div sec:authorize="hasAuthority('ADMIN')">
+								<a
+									th:href="@{/products/edit/{id}(id=${product.id})}"
+									class="btn btn-success btn-sm"
+									>Sửa</a
+								>
+								<a
+									th:href="@{/products/delete/{id}(id=${product.id})}"
+									class="btn btn-danger btn-sm"
+									onclick="return confirm('Bạn có chắc không?')"
+									>Xóa</a
+								>
+							</div>
 						</td>
 						<td>
 							<form
 								th:action="@{/cart/add}"
 								method="post"
+								sec:authorize="isAuthenticated()"
 							>
+								>
 								<input
 									type="number"
 									name="quantity"

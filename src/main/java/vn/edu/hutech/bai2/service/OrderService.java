@@ -27,6 +27,7 @@ public class OrderService {
 
     @Transactional
     public Order createOrder(Checkout checkout, List<CartItem> cartItems) {
+
         Order order = new Order();
         order.setCustomerName(checkout.getCustomerName()); // Gọi phương thức setCustomerName
         order.setAddress(checkout.getAddress()); // Gọi phương thức setCustomerName

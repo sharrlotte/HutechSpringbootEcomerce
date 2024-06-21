@@ -4,6 +4,7 @@
 	class="h-100"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
 >
 	<head>
 		<meta
@@ -84,23 +85,74 @@
 									<li><a href="/categories">Category</a></li>
 									<li><a href="/products">Product</a></li>
 									<li><a href="/cart">Cart</a></li>
-								</ul>
-
-								<ul class="nav navbar-nav navbar-right">
-									<li>
+									<li
+										class="nav-item"
+										sec:authorize="hasAnyAuthority('ADMIN')"
+									>
 										<a
-											href="#"
-											data-toggle="modal"
-											data-target="#modalSignup"
-											><span class="glyphicon glyphicon-user"></span> Đăng ký</a
+											th:href="@{/products/add}"
+											class="nav-link text-white"
+											>Add New Product</a
 										>
 									</li>
-									<li>
+									<li
+										class="nav-item"
+										sec:authorize="hasAnyAuthority('ADMIN')"
+									>
 										<a
-											href="#"
-											data-toggle="modal"
-											data-target="#modalLogin"
-											><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a
+											th:href="@{/categories/add}"
+											class="nav-link text-white"
+											>Add New Category</a
+										>
+									</li>
+								</ul>
+								<ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+									<li
+										class="nav-item d-flex align-items-center"
+										sec:authorize="isAuthenticated()"
+									>
+										<span class="navbar-text text-white">
+											Xin chào,
+											<span
+												sec:authentication="name"
+												style="margin-right: 20px"
+											></span>
+										</span>
+									</li>
+									<li
+										class="nav-item"
+										sec:authorize="isAuthenticated()"
+									>
+										<form
+											th:action="@{/logout}"
+											method="post"
+										>
+											<button
+												class="btn btn-outline-light"
+												type="submit"
+											>
+												Logout
+											</button>
+										</form>
+									</li>
+									<li
+										class="nav-item"
+										sec:authorize="!isAuthenticated()"
+									>
+										<a
+											class="btn btn-outline-light"
+											href="/login"
+											>Login</a
+										>
+									</li>
+									<li
+										class="nav-item"
+										sec:authorize="!isAuthenticated()"
+									>
+										<a
+											class="btn btn-outline-light"
+											href="/register"
+											>Register</a
 										>
 									</li>
 								</ul>
@@ -327,5 +379,6 @@
 			src="/js/image.js"
 			type="text/javascript"
 		></script>
+		<script></script>
 	</body>
 </html>

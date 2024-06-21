@@ -38,10 +38,16 @@
 					<tr th:each="item : ${cartItems}">
 						<td th:text="${item.product.name}"></td>
 						<td th:text="${item.quantity}"></td>
-						<td class="d-flex gap-2">
+						<td class="d-flex h-100 gap-2">
+							<span
+								th:if="${error}"
+								th:text="${error}"
+								>Error</span
+							>
 							<form
 								th:action="@{/cart/update}"
 								method="post"
+								style="width: 34px"
 							>
 								<input
 									type="hidden"
@@ -56,7 +62,9 @@
 								/>
 								<button
 									type="submit"
-									class="btn btn-warning btn-sm"
+									class="btn btn-warning btn-sm h-100"
+									style="aspect-ratio: 1/1"
+									th:disabled="${item.quantity - 1 < 1}"
 								>
 									-1
 								</button>
@@ -64,6 +72,30 @@
 							<form
 								th:action="@{/cart/update}"
 								method="post"
+							>
+								<input
+									oninput="this.value = Math.round(this.value);"
+									onchange="this.value = Math.round(this.value);this.form.submit()"
+									type="number"
+									name="quantity"
+									step="1"
+									min="0"
+									th:max="${item.product.quantity}"
+									th:value="${item.quantity}"
+									class="form-control d-inline-block"
+									pattern="\d*"
+								/>
+								<input
+									type="hidden"
+									th:value="${item.product.id}"
+									name="productId"
+								/>
+							</form>
+							<form
+								th:action="@{/cart/update}"
+								method="post"
+								class="d-flex h-full"
+								style="width: 34px"
 							>
 								<input
 									type="hidden"
@@ -78,14 +110,16 @@
 								/>
 								<button
 									type="submit"
-									class="btn btn-warning btn-sm"
+									class="btn btn-warning btn-sm h-full"
+									style="aspect-ratio: 1/1"
+									th:disabled="${item.quantity + 1 > item.product.quantity}"
 								>
 									+1
 								</button>
 							</form>
 							<a
 								th:href="@{/cart/remove/{productId}(productId=${item.product.id})}"
-								class="btn btn-danger btn-sm"
+								class="btn btn-danger btn-sm d-flex justify-content-center align-items-center"
 								>Remove</a
 							>
 						</td>
@@ -105,7 +139,7 @@
 				|
 				<a
 					th:href="@{/order/checkout}"
-					class="btn btn-primary  "
+					class="btn btn-primary"
 					>Check Out</a
 				>
 			</div>
